@@ -23,6 +23,15 @@
                     </li>
                     <li class="nav-item mx-3">
                         <a class="nav-link ';
+                        if($page == 'add brand'){
+                            echo 'active ';
+                        };
+                        echo '" href="addbrand.php">
+                            <p class="h5">Add Brand</p>
+                        </a>
+                    </li>
+                    <li class="nav-item mx-3">
+                        <a class="nav-link ';
                         if($page == 'add product'){
                             echo 'active ';
                         };
