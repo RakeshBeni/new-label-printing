@@ -3,7 +3,7 @@ include "./connection.php";
 
 $brandName = $_GET['brandName'];
 $product = $_GET['product'];
-$sql = "SELECT  * FROM `company` WHERE `company` = '$brandName' AND `product` = '$product' ";
+$sql = "SELECT  * FROM `brand_product_img` WHERE `company` = '$brandName' AND `product` = '$product' ";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 
@@ -37,11 +37,11 @@ printnav('labels print');
                 <div class="card text-center" style="width: 26rem;">
                 <?php 
                  
-                  if($row['productUrl'] == ""){
+                  if($row['product_url'] == ""){
 
                       echo '<h5 class="card-title text-center text-warning" > Image not avalible</h5>';
                   }else{
-                    echo '<img src="https://authenfitplus.com/submit/brand_image/'.$row['productUrl'].'.png" class="card-img-top" alt="'.$row['product'].'"> ';
+                    echo '<img src="https://authenfitplus.com/submit/brand_image/'.$row['product_url'].'.png" class="card-img-top" alt="'.$row['product'].'"> ';
                   }
                 ?>
                     <div class="card-body">
@@ -97,6 +97,22 @@ printnav('labels print');
         </div>
     </div>
 
+    
+<div class="modal fade" id="Modal11" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      
+      <div class="modal-body ">
+      <form class="d-flex justify-content-between" action="addflavour.php" method="post">    
+     
+      <input type="text" name="flavour" id="flavour" placeholder="add flavour">
+      <button type="submit" class="btn btn-primary mx-2">Save changes</button>
+      </form>
+      </div>
+      
+    </div>
+  </div>
+</div>
 
 
     <!-- Bootstrap JS and Popper.js -->
@@ -104,6 +120,12 @@ printnav('labels print');
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+
+    <script>
+         function addflavour() {
+            $('#Modal11').modal('show')
+        }
+    </script>
 </body>
 
 </html>

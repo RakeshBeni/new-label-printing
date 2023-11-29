@@ -39,7 +39,7 @@ if(isset($_POST) ){
     $id = $row4['id'];
 
     // for geting price of the product
-    $sql3 = "SELECT * FROM `company` WHERE `company` LIKE '$company' AND `product` LIKE '$product'";
+    $sql3 = "SELECT * FROM `brand_product_img` WHERE `company` LIKE '$company' AND `product` LIKE '$product'";
     $result2 = mysqli_query($conn, $sql3);
     $row2 = mysqli_fetch_assoc($result2);
     $price = "$row2[price]";
@@ -47,60 +47,28 @@ if(isset($_POST) ){
 
     $batch = $code+$id;
 
-      
-    $host = '89.117.157.154'; 
-    $username = 'u359658933_authenfitplus'; 
-    $password = 'G00dL1fe$$$$'; 
-    $dbname = 'u359658933_authenfitplus'; 
 
-    // Create a connection
-    // $connection = mysqli_connect($host, $username, $password, $dbname);
+    $sql21 = "UPDATE `unique code database` SET `company`='$company',`product`='$product',`flavour`='$flavour',`mfg` = '$mfg' , `best before` = '$exp' , `price` = '$price' ,`batch` = '$batch' ,`date` = sysdate()  WHERE `sr no` BETWEEN '$available' AND '$lastCode' ";
 
-    // $sql21 = "UPDATE `unique code database` SET `company`='$company',`product`='$product',`flavour`='$flavour',`mfg` = '$mfg' , `best before` = '$exp' , `price` = '$price' ,`batch` = '$batch' ,`date` = sysdate()  WHERE `sr no` BETWEEN '$available' AND '$lastCode' ";
+    $result21 = mysqli_query($conn, $sql21);
 
-    // $result21 = mysqli_query($connection, $sql21);
+    if ($result21) {
 
-    // if ($result21) {
+        $sql2 = "UPDATE `unique code database` SET `company`='$company',`product`='$product',`flavour`='$flavour',`mfg` = '$mfg' , `best before` = '$exp' , `price` = '$price' ,`batch` = '$batch' ,`date` = sysdate()  WHERE `sr no`BETWEEN '$available' AND '$lastCode' " ;
 
-    //     $sql2 = "UPDATE `unique code database` SET `company`='$company',`product`='$product',`flavour`='$flavour',`mfg` = '$mfg' , `best before` = '$exp' , `price` = '$price' ,`batch` = '$batch'  WHERE `sr no`BETWEEN '$available' AND '$lastCode' " ;
+        $result2 = mysqli_query($con, $sql2);
+    } else {
 
-    //     $result2 = mysqli_query($conn, $sql2);
-    // } else {
-
-    //     echo "pleae connect to the internet";
-    // }
-
-
-$tag ;
-$batch = $code+$id;
-
-      
-$host = '89.117.157.154'; 
-$username = 'u359658933_authenfitplus'; 
-$password = 'G00dL1fe$$$$'; 
-$dbname = 'u359658933_authenfitplus'; 
-
-// Create a connection
-$connection = mysqli_connect($host, $username, $password, $dbname);
-
-$sql21 = "UPDATE `unique code database` SET `company`='$company',`product`='$product',`flavour`='$flavour',`mfg` = '$mfg' , `best before` = '$exp' , `price` = '$price' ,`batch` = '$batch' ,`date` = sysdate()  WHERE `sr no` BETWEEN '$available' AND '$lastCode' ";
-
-// $result21 = mysqli_query($connection, $sql21);
-
-// if ($result21) {
-
-//     $sql2 = "UPDATE `unique code database` SET `company`='$company',`product`='$product',`flavour`='$flavour',`mfg` = '$mfg' , `best before` = '$exp' , `price` = '$price' ,`batch` = '$batch'  WHERE `sr no`BETWEEN '$available' AND '$lastCode' " ;
-
-//     // $result2 = mysqli_query($conn, $sql2);
-// } else {
-
-//     echo "pleae connect to the internet";
-// }
+        echo "pleae connect to the internet";
+    }
 
 
 $tag ;
 
-// $apiUrl = 'http://DESKTOP-VJIH12T:85 /Integration/labelprint/Execute';
+
+$tag ;
+
+$apiUrl = 'http://DESKTOP-B5NGVSH:83/Integration/labelprint/Execute';
 if ($company == "Royalent") {
     $GLOBALS['tag'] = "ROYALENT";
 } elseif ($company == "Apollo") {
@@ -121,47 +89,47 @@ $postData = array(
     'tag' => $tag,
 
 );
+
+// Convert the data to a JSON-encoded string
+$jsonData = json_encode($postData);
 print_r($postData);
 
-// // Convert the data to a JSON-encoded string
-// $jsonData = json_encode($postData);
+// Initialize cURL session
+$ch = curl_init();
 
-// // Initialize cURL session
-// $ch = curl_init();
+// Set the cURL options
+curl_setopt($ch, CURLOPT_URL, $apiUrl);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); // Return the response as a string instead of outputting it
+curl_setopt($ch, CURLOPT_POST, true); // Set as POST request
+curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonData); // Set POST data as JSON
+curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json')); // Set JSON content type header
 
-// // Set the cURL options
-// curl_setopt($ch, CURLOPT_URL, $apiUrl);
-// curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); // Return the response as a string instead of outputting it
-// curl_setopt($ch, CURLOPT_POST, true); // Set as POST request
-// curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonData); // Set POST data as JSON
-// curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json')); // Set JSON content type header
+// Execute the cURL session and capture the response
+$response = curl_exec($ch);
 
-// // Execute the cURL session and capture the response
-// $response = curl_exec($ch);
+// Check for cURL errors
+if (curl_errno($ch)) {
+    echo 'Curl error: ' . curl_error($ch);
+}
 
-// // Check for cURL errors
-// if (curl_errno($ch)) {
-//     echo 'Curl error: ' . curl_error($ch);
-// }
+// Close the cURL session
+curl_close($ch);
 
-// // Close the cURL session
-// curl_close($ch);
-
-// // Handle the response
-// if ($response !== false) {
+// Handle the response
+if ($response !== false) {
     
-//     $responseData = json_decode($response, true);
-//     if ($responseData !== null) {
-//         // Handle the response data here
-//         var_dump($responseData);
-//     } else {
-//         // If the response is not in JSON format, handle it accordingly
-//         echo 'Invalid response format: ' . $response;
-//     }
-// } else {
-//     // If cURL execution failed, handle the error
-//     echo 'Failed to execute the request.';
-// }
+    $responseData = json_decode($response, true);
+    if ($responseData !== null) {
+        // Handle the response data here
+        var_dump($responseData);
+    } else {
+        // If the response is not in JSON format, handle it accordingly
+        echo 'Invalid response format: ' . $response;
+    }
+} else {
+    // If cURL execution failed, handle the error
+    echo 'Failed to execute the request.';
+}
 
 
 

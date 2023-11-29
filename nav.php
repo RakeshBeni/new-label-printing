@@ -21,27 +21,10 @@
                             <p class="h5">Print labels</p>
                         </a>
                     </li>
-                    <li class="nav-item mx-3">
-                        <a class="nav-link ';
-                        if($page == 'add brand'){
-                            echo 'active ';
-                        };
-                        echo '" href="addbrand.php">
-                            <p class="h5">Add Brand</p>
-                        </a>
-                    </li>
-                    <li class="nav-item mx-3">
-                        <a class="nav-link ';
-                        if($page == 'add product'){
-                            echo 'active ';
-                        };
-                        echo '" href="productAdd1.php">
-                            <p class="h5">Add product</p>
-                        </a>
-                    </li>
+                  
                    
                     <li class="nav-item mx-3">
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal11">
+                    <button type="button" class="btn btn-primary" onclick="addflavour()">
                     add flavour
                   </button>
                     </li>
@@ -54,21 +37,6 @@
 </nav>
 
 
-<div class="modal fade" id="Modal11" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      
-      <div class="modal-body ">
-      <form class="d-flex justify-content-between" action="addflavour.php" method="post">    
-     
-      <input type="text" name="flavour" id="flavour" placeholder="add flavour">
-      <button type="submit" class="btn btn-primary mx-2">Save changes</button>
-      </form>
-      </div>
-      
-    </div>
-  </div>
-</div>
 
 
 '
