@@ -66,7 +66,6 @@ if(isset($_POST) ){
 $tag ;
 
 
-$tag ;
 
 $apiUrl = 'http://DESKTOP-B5NGVSH:83/Integration/labelprint/Execute';
 if ($company == "Royalent") {
