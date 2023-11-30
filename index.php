@@ -149,7 +149,7 @@ if (isset($_GET['brandName'])) {
                 <p class="text-danger">Please Upload background removed png with max size of 700kb </p>
                     <div class="m-2">
 
-                        <form action="./addpoduct.php" method="POST" enctype="multipart/form-data">
+                        <form action="https://authenfitplus.com/submit/addpoduct.php" method="POST" enctype="multipart/form-data">
 
                             <div class="row">
                                 <input type="text" name="brand" value="<?php if (isset($_GET['brandName'])) {
@@ -199,7 +199,7 @@ if (isset($_GET['brandName'])) {
                 <div class="modal-body">
                     <div class="m-2">
                     <p class="text-danger">Please Upload background removed png with max size of 500kb </p>
-                        <form action="./addpoduct.php" method="POST" enctype="multipart/form-data">
+                        <form action="https://authenfitplus.com/submit/addpoduct.php" method="POST" enctype="multipart/form-data">
 
                             <div class="row">
 
