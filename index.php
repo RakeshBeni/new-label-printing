@@ -62,13 +62,13 @@ if (isset($_GET['brandName'])) {
 
                     echo '<div class="col-md-3 mb-4">
                     <a href="testing.php?brandName=' . $row['company'] . '&product=' . $row['product'] . '" class="col-md-3 mb-4 diplay-block text-decoration-none text-dark">
-                        <div class="card h-100"">
+                        <div class="card h-100">
                             <div class="card-img-container">';
 
 
                             if ($row['product_url'] == "") {
 
-                                echo '<h5 class="card-title text-center text-warning" > Image not avalible</h5>';
+                                echo '<h5 id="' . $row['product'] . '" onclick="productImageUpload(event)" class="card-title text-center text-success mt-3" > Upload Image</h5>';
                             } else {
                                 echo '<img src="https://authenfitplus.com/submit/brand_image/' . $row['product_url'] . '.png" class="card-img-top" alt="' . $row['product'] . '"> ';
                             }
@@ -101,10 +101,10 @@ if (isset($_GET['brandName'])) {
 
                 while ($row = mysqli_fetch_assoc($result)) {
 
-                    echo '  <a href="?brandName=' . $row['company'] . '" class="col-md-3 mb-4 diplay-block text-decoration-none text-dark"> <div class="card">';
+                    echo '  <a href="?brandName=' . $row['company'] . '" class="col-md-3 mb-4 diplay-block text-decoration-none text-dark"> <div class="card h-100">';
                     if ($row['brand_url'] == "") {
 
-                        echo '<h5 class="card-title text-center text-warning" > Image not avalible</h5>';
+                        echo '<h5 id="' . $row['company'] . '" onclick="brandImageUpload(event)" class="card-title text-center text-success mt-3" > Upload Image</h5>';
                     } else {
 
                         echo ' <img src="https://authenfitplus.com/submit/brand_image/' . $row['brand_url'] . '.png" class="card-img-top" alt="' . $row['company'] . '">';
@@ -118,7 +118,7 @@ if (isset($_GET['brandName'])) {
                     </a>';
                 }
                 echo '  <div id="addBrand" onclick="addbrand()" class="col-md-3 mb-4 diplay-block text-decoration-none text-dark"> 
-                <div class="card"> <h1 class="text-success text-center mt-2"><svg xmlns="http://www.w3.org/2000/svg" width="76" height="76" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                <div class="card h-100"> <h1 class="text-success text-center mt-2"><svg xmlns="http://www.w3.org/2000/svg" width="76" height="76" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
                 <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
               </svg></h1><div class="card-body">
                     <h5 class="card-title text-success text-center"> Add brand</h5>
@@ -170,8 +170,8 @@ if (isset($_GET['brandName'])) {
                                 </div>
                                 <div class="input-group mb-3">
                                     <div class="custom-file">
-                                        <label class="custom-file-label" for="customFile">Choose file</label>
-                                        <input type="file" name="productPhoto" accept="image/png" class="custom-file-input" id="customFile" onchange="updateLabel()" required>
+                                        <label class="custom-file-label" for="customFile1">Choose file</label>
+                                        <input type="file" name="productPhoto" accept="image/png" class="custom-file-input" id="customFile1" onchange="updateLabel1()" required>
                                     </div>
                                 </div>
                             </div>
@@ -212,8 +212,74 @@ if (isset($_GET['brandName'])) {
                                 </div>
                                 <div class="input-group mb-3">
                                     <div class="custom-file">
+                                        <label class="custom-file-label" for="customFile2">Choose file</label>
+                                        <input type="file" name="icon" class="custom-file-input" accept="image/png" id="customFile2" onchange="updateLabel2()" required>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="UploadBrandImage" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Upload Brand Image</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="m-2">
+                    <p class="text-danger">Please Upload background removed png with max size of 500kb </p>
+                        <form action="https://authenfitplus.com/submit/addpoduct.php" method="POST" enctype="multipart/form-data">
+                            <input id="brandNameForm" type="text" name="alreadyExistBrand" value="" hidden>
+                            <div class="row">   
+                                <div class="input-group mb-3">
+                                    <div class="custom-file">
                                         <label class="custom-file-label" for="customFile">Choose file</label>
-                                        <input type="file" name="icon" class="custom-file-input" accept="image/png" id="customFile" onchange="updateLabel()" required>
+                                        <input type="file" name="brandicon" class="custom-file-input" accept="image/png" id="customFile" onchange="updateLabel()" required>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="UploadProductImage" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Upload Product Image</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="m-2">
+                    <p class="text-danger">Please Upload background removed png with max size of 500kb </p>
+                        <form action="https://authenfitplus.com/submit/addpoduct.php" method="POST" enctype="multipart/form-data">
+                            <input type="text" name="brand1" value="<?php echo $_GET['brandName']?>" hidden>
+                            <input id="productNameForm" type="text" name="product55" value="" hidden>
+                            <div class="row">   
+                                <div class="input-group mb-3">
+                                    <div class="custom-file">
+                                        <label class="custom-file-label" for="customFile3">Choose file</label>
+                                        <input type="file" name="productImageUp" class="custom-file-input" accept="image/png" id="customFile3" onchange="updateLabel3()" required>
                                     </div>
                                 </div>
                             </div>
@@ -253,6 +319,25 @@ if (isset($_GET['brandName'])) {
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <script>
+        function brandImageUpload(event){
+          console.log(event.target.id);
+          let brand = event.target.id;
+
+            $('#UploadBrandImage').modal('show');
+            document.getElementById('brandNameForm').setAttribute("value", brand);
+            event.preventDefault();
+        }
+
+        function productImageUpload(event){
+          console.log(event.target.id);
+          let product = event.target.id;
+
+            $('#UploadProductImage').modal('show');
+            document.getElementById('productNameForm').setAttribute("value", product);
+            event.preventDefault();
+        }
+
+
         function addbrand() {
             $('#myModal').modal('show')
         }
@@ -266,6 +351,24 @@ if (isset($_GET['brandName'])) {
 
         function updateLabel() {
             const input = document.getElementById('customFile');
+            const label = input.previousElementSibling;
+            const fileName = input.files[0].name;
+            label.innerHTML = fileName;
+        }
+        function updateLabel1() {
+            const input = document.getElementById('customFile1');
+            const label = input.previousElementSibling;
+            const fileName = input.files[0].name;
+            label.innerHTML = fileName;
+        }
+        function updateLabel2() {
+            const input = document.getElementById('customFile2');
+            const label = input.previousElementSibling;
+            const fileName = input.files[0].name;
+            label.innerHTML = fileName;
+        }
+        function updateLabel3() {
+            const input = document.getElementById('customFile3');
             const label = input.previousElementSibling;
             const fileName = input.files[0].name;
             label.innerHTML = fileName;

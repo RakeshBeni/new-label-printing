@@ -154,6 +154,7 @@ print_r($postData);
 //     echo 'Failed to execute the request.';
 // }
 
+header("location:index.php");
 
 
 }
