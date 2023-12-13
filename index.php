@@ -171,7 +171,7 @@ if (isset($_GET['brandName'])) {
                                 <div class="input-group mb-3">
                                     <div class="custom-file">
                                         <label class="custom-file-label" for="customFile1">Choose file</label>
-                                        <input type="file" name="productPhoto" accept="image/png" class="custom-file-input" id="customFile1" onchange="updateLabel1()" required>
+                                        <input type="file" name="productPhoto" accept="image/png" class="custom-file-input" id="customFile1" onchange="updateLabel1()" >
                                     </div>
                                 </div>
                             </div>
@@ -213,7 +213,7 @@ if (isset($_GET['brandName'])) {
                                 <div class="input-group mb-3">
                                     <div class="custom-file">
                                         <label class="custom-file-label" for="customFile2">Choose file</label>
-                                        <input type="file" name="icon" class="custom-file-input" accept="image/png" id="customFile2" onchange="updateLabel2()" required>
+                                        <input type="file" name="icon" class="custom-file-input" accept="image/png" id="customFile2" onchange="updateLabel2()" >
                                     </div>
                                 </div>
                             </div>
@@ -246,7 +246,7 @@ if (isset($_GET['brandName'])) {
                                 <div class="input-group mb-3">
                                     <div class="custom-file">
                                         <label class="custom-file-label" for="customFile">Choose file</label>
-                                        <input type="file" name="brandicon" class="custom-file-input" accept="image/png" id="customFile" onchange="updateLabel()" required>
+                                        <input type="file" name="brandicon" class="custom-file-input" accept="image/png" id="customFile" onchange="updateLabel()" required >
                                     </div>
                                 </div>
                             </div>
@@ -279,7 +279,7 @@ if (isset($_GET['brandName'])) {
                                 <div class="input-group mb-3">
                                     <div class="custom-file">
                                         <label class="custom-file-label" for="customFile3">Choose file</label>
-                                        <input type="file" name="productImageUp" class="custom-file-input" accept="image/png" id="customFile3" onchange="updateLabel3()" required>
+                                        <input type="file" name="productImageUp" class="custom-file-input" accept="image/png" id="customFile3" onchange="updateLabel3()" required >
                                     </div>
                                 </div>
                             </div>
